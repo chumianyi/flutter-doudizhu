@@ -28,9 +28,10 @@ jobs:
 
       - name: Build Web (standalone, no download button)
         run: |
-          flutter build web --release --base-href="./"
+          flutter build web --release
           mkdir -p output/web-standalone
           cp -r build/web/* output/web-standalone/
+          sed -i 's|<base href="/">|<base href="./">|' output/web-standalone/index.html
 
       - name: Create zip packages
         run: |
