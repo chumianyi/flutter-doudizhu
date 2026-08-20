@@ -13,10 +13,10 @@ class Player {
   Player({
     required this.name,
     required this.position,
-    this.hand = const [],
+    List<PlayingCard>? hand,
     this.role = PlayerRole.farmer,
     this.isHuman = false,
-  });
+  }) : hand = hand ?? [];
 
   int get cardCount => hand.length;
 
