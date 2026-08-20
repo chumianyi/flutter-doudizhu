@@ -34,6 +34,11 @@
       z-index: 9999;
       color: white;
       font-family: sans-serif;
+      transition: opacity 0.5s;
+    }
+    #loading.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
     #loading h1 {
       font-size: 28px;
@@ -58,24 +63,33 @@
     <div class="spinner"></div>
     <p style="margin-top:16px;opacity:0.7;">正在加载...</p>
   </div>
-  <script src="flutter.js" defer></script>
   <script>
-    window.addEventListener('load', function(ev) {
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-            setTimeout(function() {
-              var loading = document.getElementById('loading');
-              if (loading) loading.style.display = 'none';
-            }, 500);
-          });
+    // 监听 Flutter 渲染完成后隐藏 loading
+    (function() {
+      var observer = new MutationObserver(function(mutations) {
+        var flutterView = document.querySelector('flutter-view') ||
+                          document.querySelector('.flt-glass-pane') ||
+                          document.querySelector('flt-glass-pane');
+        if (flutterView) {
+          var loading = document.getElementById('loading');
+          if (loading) {
+            loading.classList.add('hidden');
+            setTimeout(function() { loading.remove(); }, 600);
+          }
+          observer.disconnect();
         }
       });
-    });
+      observer.observe(document.body, { childList: true, subtree: true });
+      // 兜底：15秒后强制隐藏
+      setTimeout(function() {
+        var loading = document.getElementById('loading');
+        if (loading) {
+          loading.classList.add('hidden');
+          setTimeout(function() { loading.remove(); }, 600);
+        }
+      }, 15000);
+    })();
   </script>
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

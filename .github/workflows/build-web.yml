@@ -22,13 +22,13 @@ jobs:
 
       - name: Build Web (with download button)
         run: |
-          flutter build web --release --dart-define=SHOW_DOWNLOAD=true
+          flutter build web --release --dart-define=SHOW_DOWNLOAD=true --base-href="/flutter-doudizhu/"
           mkdir -p output/web-with-download
           cp -r build/web/* output/web-with-download/
 
       - name: Build Web (standalone, no download button)
         run: |
-          flutter build web --release
+          flutter build web --release --base-href="./"
           mkdir -p output/web-standalone
           cp -r build/web/* output/web-standalone/
 
@@ -48,10 +48,3 @@ jobs:
             doudizhu-standalone.zip
             output/web-with-download/
             output/web-standalone/
-
-      - name: Deploy to GitHub Pages (web with download)
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output/web-with-download
-          destination_dir: ./
