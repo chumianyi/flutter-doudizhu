@@ -1,0 +1,57 @@
+name: Build Flutter Web
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+
+      - name: Flutter Pub Get
+        run: flutter pub get
+
+      - name: Build Web (with download button)
+        run: |
+          flutter build web --release --dart-define=SHOW_DOWNLOAD=true
+          mkdir -p output/web-with-download
+          cp -r build/web/* output/web-with-download/
+
+      - name: Build Web (standalone, no download button)
+        run: |
+          flutter build web --release
+          mkdir -p output/web-standalone
+          cp -r build/web/* output/web-standalone/
+
+      - name: Create zip packages
+        run: |
+          cd output
+          zip -r ../doudizhu-web-with-download.zip web-with-download/
+          zip -r ../doudizhu-standalone.zip web-standalone/
+          cd ..
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: doudizhu-builds
+          path: |
+            doudizhu-web-with-download.zip
+            doudizhu-standalone.zip
+            output/web-with-download/
+            output/web-standalone/
+
+      - name: Deploy to GitHub Pages (web with download)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output/web-with-download
+          destination_dir: ./
