@@ -54,13 +54,13 @@
 </head>
 <body>
   <div id="loading">
-    <h1>🃏 欢乐斗地主</h1>
+    <h1>欢乐斗地主</h1>
     <div class="spinner"></div>
     <p style="margin-top:16px;opacity:0.7;">正在加载...</p>
   </div>
+  <script src="flutter.js" defer></script>
   <script>
     window.addEventListener('load', function(ev) {
-      // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
@@ -68,7 +68,6 @@
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
             appRunner.runApp();
-            // Hide loading
             setTimeout(function() {
               var loading = document.getElementById('loading');
               if (loading) loading.style.display = 'none';
@@ -78,6 +77,5 @@
       });
     });
   </script>
-  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

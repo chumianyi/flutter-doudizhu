@@ -90,7 +90,7 @@ class _GameScreenState extends State<GameScreen> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3),
+              Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
               Theme.of(context).colorScheme.surface,
             ],
           ),
@@ -144,7 +144,7 @@ class _GameScreenState extends State<GameScreen> {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
+                        color: Theme.of(context).colorScheme.surface.withOpacity(0.9),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
                       ),
@@ -290,7 +290,7 @@ class _GameScreenState extends State<GameScreen> {
             decoration: BoxDecoration(
               color: isCurrent
                   ? Theme.of(context).colorScheme.primaryContainer
-                  : Theme.of(context).colorScheme.surfaceVariant.withValues(alpha: 0.5),
+                  : Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.5),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: isCurrent
@@ -452,7 +452,7 @@ class _GameScreenState extends State<GameScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.95),
+        color: Theme.of(context).colorScheme.surface.withOpacity(0.95),
         border: Border(
           top: BorderSide(color: Theme.of(context).colorScheme.outlineVariant),
         ),

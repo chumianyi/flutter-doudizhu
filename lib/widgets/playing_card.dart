@@ -45,7 +45,7 @@ class PlayingCardWidget extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.15),
+              color: Colors.black.withOpacity(0.15),
               blurRadius: 4,
               offset: const Offset(1, 2),
             ),
@@ -184,7 +184,7 @@ class PlayingCardWidget extends StatelessWidget {
         border: Border.all(color: Colors.white, width: 2),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.2),
+            color: Colors.black.withOpacity(0.2),
             blurRadius: 4,
             offset: const Offset(1, 2),
           ),
@@ -193,7 +193,7 @@ class PlayingCardWidget extends StatelessWidget {
       child: Center(
         child: Icon(
           Icons.style,
-          color: Colors.white.withValues(alpha: 0.6),
+          color: Colors.white.withOpacity(0.6),
           size: width * 0.4,
         ),
       ),
