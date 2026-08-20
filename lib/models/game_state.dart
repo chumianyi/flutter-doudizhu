@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import '../models/card.dart';
 import '../models/player.dart';
-import 'game_logic.dart';
-import 'ai_player.dart';
-import 'voice_service.dart';
-import 'storage_service.dart';
+import '../services/game_logic.dart';
+import '../services/ai_player.dart';
+import '../services/voice_service.dart';
+import '../services/storage_service.dart';
 
 enum GamePhase { dealing, calling, playing, ended }
 

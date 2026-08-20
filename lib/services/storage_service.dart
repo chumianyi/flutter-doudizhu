@@ -2,7 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageService {
   static const String _happyBeansKey = 'happy_beans';
-  static const String _defaultBeans = 1000;
+  static const int _defaultBeans = 1000;
   static const String _soundKey = 'sound_enabled';
   static const String _totalGamesKey = 'total_games';
   static const String _winCountKey = 'win_count';
