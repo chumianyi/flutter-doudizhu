@@ -1,0 +1,11 @@
+{
+  "name": "欢乐斗地主",
+  "short_name": "斗地主",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#1a1a2e",
+  "theme_color": "#2E7D32",
+  "description": "Flutter Web 斗地主小游戏，快乐豆永久保存",
+  "icons": []
+}
