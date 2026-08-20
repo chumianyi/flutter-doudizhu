@@ -9,14 +9,25 @@ void main() async {
   runApp(const DoudizhuApp());
 }
 
-class DoudizhuApp extends StatelessWidget {
+class DoudizhuApp extends StatefulWidget {
   const DoudizhuApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final gameState = GameState();
-    gameState.initGame();
+  State<DoudizhuApp> createState() => _DoudizhuAppState();
+}
 
+class _DoudizhuAppState extends State<DoudizhuApp> {
+  late final GameState gameState;
+
+  @override
+  void initState() {
+    super.initState();
+    gameState = GameState();
+    gameState.initGame();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: '欢乐斗地主',
       debugShowCheckedModeBanner: false,
